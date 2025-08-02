@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Selection Page</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter as per instructions */
+            margin: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: capitalize;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+        .selection-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .selection-group label {
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background-color: #e8f0fe;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .selection-group label:hover {
+            background-color: #d0e0ff;
+        }
+        .selection-group input[type="radio"] {
+            accent-color: #3498db; /* Custom color for radio button */
+        }
+        #secondarySelectionContainer {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px dashed #a0a0a0;
+            border-radius: 8px;
+            background-color: #f0f8ff;
+            min-height: 100px; /* Just for visual space */
+            text-align: center;
+        }
+        .item-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .item-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 20px;
+            border: 2px solid #aaddaa;
+            border-radius: 10px;
+            background-color: #e6ffe6;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s, border-color 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            min-width: 120px;
+            text-align: center;
+        }
+        .item-option:hover {
+            background-color: #ccffcc;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .item-option.selected {
+            background-color: #5cb85c; /* A more distinct green for selected */
+            color: white;
+            border-color: #4cae4c;
+            font-weight: bold;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        .item-option strong {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        .item-option small {
+            color: #666; /* Darker for better contrast */
+            font-size: 0.9em;
+        }
+        .item-option.selected small {
+            color: white;
+        }
+
+        /* New styles for Item Details Section */
+        #itemDetailsContainer {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            background-color: #fdfdfd;
+            min-height: 150px;
+            text-align: left; /* Align text within details container */
+        }
+        .detail-field {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        .detail-field label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #34495e;
+            text-transform: capitalize; /* Capitalize label text */
+        }
+        .detail-field input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 100%; /* Full width within its container */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .detail-field input[type="text"]:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+        .loading-message {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            padding: 20px;
+        }
+        .error-message {
+            text-align: center;
+            color: red;
+            padding: 20px;
+            font-weight: bold;
+        }
+        .submit-button {
+            display: block; /* Make it take full width or center it */
+            margin: 20px auto 0; /* Center horizontally and add top margin */
+            padding: 12px 25px;
+            background-color: #28a745; /* Green for success/submit */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .submit-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .submit-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Update Offerings</h1>
+
+        <div class="selection-group">
+            <p>Which of the offerings would you like to update:</p>
+            <label>
+                <input type="radio" name="mainOption" value="menu_items"> Menu
+            </label>
+            <label>
+                <input type="radio" name="mainOption" value="bar_items"> Bar
+            </label>
+            <label>
+                <input type="radio" name="mainOption" value="equipment"> Equipment
+            </label>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Available Items</h2>
+        <div id="secondarySelectionContainer">
+            <p>Select a main option above to see available items.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Item Details</h2>
+        <div id="itemDetailsContainer">
+            <p>Click on an item above to view its details.</p>
+        </div>
+    </div>
+
+    <div class="selection-group">
+        <label>
+            <a href="/delete" style="text-decoration:none;">
+                Delete Items
+            </a>
+        </label>
+        <label>
+            <a href="/add" style="text-decoration:none;">
+                Add Items
+            </a>
+        </label>
+    </div>
+
+    <script src="static/js/update.js"></script>
+
+</body>
+</html>
