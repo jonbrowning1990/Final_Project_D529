@@ -1,0 +1,4 @@
+pandas
+flask
+sqlite3
+os
