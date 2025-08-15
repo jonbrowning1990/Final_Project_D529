@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Selection Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .selection-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        .selection-group label {
+            margin-right: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .selection-group input[type="radio"] {
+            margin-right: 5px;
+        }
+        #secondarySelectionContainer {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px dashed #bbb;
+            border-radius: 8px;
+            background-color: #e9e9e9;
+            min-height: 100px; /* Just for visual space */
+        }
+        .item-option {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 15px;
+            border: 1px solid #aaddaa;
+            border-radius: 5px;
+            background-color: #e6ffe6;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .item-option:hover {
+            background-color: #ccffcc;
+        }
+        .item-option.selected {
+            background-color: #88cc88;
+            color: white;
+            border-color: #55aa55;
+            font-weight: bold;
+        }
+        h2 {
+            color: #0056b3;
+        }
+        h3 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Choose Your Category</h1>
+
+    <div class="selection-group">
+        <p>Please select one of the main options:</p>
+        <label>
+            <input type="radio" name="mainOption" value="fruits"> Fruits
+        </label>
+        <label>
+            <input type="radio" name="mainOption" value="vegetables"> Vegetables
+        </label>
+        <label>
+            <input type="radio" name="mainOption" value="dairy"> Dairy
+        </label>
+    </div>
+
+    <h2>Available Items</h2>
+    <div id="secondarySelectionContainer">
+        <p>Select a main option above to see available items.</p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

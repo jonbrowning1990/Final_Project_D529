@@ -1,0 +1,85 @@
+<!-- templates/equipment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Equipment Offerings</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .category-section {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); /* shadow-lg */
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .category-title {
+            font-size: 2rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            color: #1a202c; /* text-gray-900 */
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid #3b82f6; /* border-blue-500 */
+            padding-bottom: 0.5rem;
+        }
+        .item-card {
+            background-color: #f7fafc; /* bg-gray-50 */
+            border: 1px solid #e2e8f0; /* border-gray-200 */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .item-name {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            color: #2d3748; /* text-gray-800 */
+        }
+        .item-description {
+            font-size: 0.875rem; /* text-sm */
+            color: #4a5568; /* text-gray-700 */
+            margin-top: 0.25rem;
+        }
+        .item-price {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 700; /* font-bold */
+            color: #92400e; /* text-yellow-800, using a different color for equipment price */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center py-10 px-4">
+    <div class="max-w-4xl w-full bg-white rounded-xl shadow-2xl p-8">
+        <h1 class="text-5xl font-extrabold text-center text-gray-900 mb-8 leading-tight">
+            ⚙️ Event Equipment Offerings ⚙️
+        </h1>
+        <p class="text-center text-gray-600 text-lg mb-10">
+            Everything you need for a perfectly equipped event. Rental prices are per day.
+        </p>
+
+        <nav class="flex justify-center space-x-4 mb-10">
+            <a href="/" class="px-5 py-2 rounded-lg bg-blue-500 text-white font-semibold hover:bg-blue-600 transition duration-300">Food Menu</a>
+            <a href="/bar" class="px-5 py-2 rounded-lg bg-gray-300 text-gray-800 font-semibold hover:bg-gray-400 transition duration-300">Bar Items</a>
+            <a href="/order" class="px-5 py-2 rounded-lg bg-green-500 text-white font-semibold hover:bg-green-600 transition duration-300">Start Your Order</a>
+        </nav>
+
+        <div id="equipment-list">
+            <!-- Equipment items will be dynamically loaded here by JavaScript -->
+            <p class="text-center text-gray-500 text-xl py-10">Loading equipment offerings...</p>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="/order" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                Proceed to Order Form
+            </a>
+        </div>
+    </div>
+
+    <!-- Link to your JavaScript file -->
+    <script src="/static/js/equipment.js"></script>
+</body>
+</html>
